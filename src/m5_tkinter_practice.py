@@ -2,38 +2,49 @@
 This project lets you try out Tkinter/Ttk and practice it!
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Evan Cochrane.
+"""  # 1: DONE PUT YOUR NAME IN THE ABOVE LINE.
 
 import tkinter
 from tkinter import ttk
+import random
 
 
 def main():
     """ Constructs a GUI with stuff on it. """
     # ------------------------------------------------------------------
-    # TODO: 2. After reading and understanding the m1e module,
+    # 2: DONE After reading and understanding the m1e module,
     #   ** make a window that shows up. **
     # ------------------------------------------------------------------
 
+    root = tkinter.Tk()
+
     # ------------------------------------------------------------------
-    # TODO: 3. After reading and understanding the m2e module,
+    # 3: DONE After reading and understanding the m2e module,
     #   ** put a Frame on the window. **
     # ------------------------------------------------------------------
 
+    my_frame = ttk.Frame(root, padding=50)
+    my_frame.grid()
+
     # ------------------------------------------------------------------
-    # TODO: 4. After reading and understanding the m2e module,
+    # 4: DONE After reading and understanding the m2e module,
     #   ** put a Button on the Frame. **
     # ------------------------------------------------------------------
 
+    my_button = ttk.Button(my_frame, text='The Second Coming approaches...')
+
     # ------------------------------------------------------------------
-    # TODO: 5. After reading and understanding the m3e module,
+    # 5: DONE After reading and understanding the m3e module,
     #   ** make your Button respond to a button-press **
     #   ** by printing   "Hello"  on the Console.     **
     # ------------------------------------------------------------------
 
+    my_button['command'] = (lambda: hello())
+    my_button.grid()
+
     # ------------------------------------------------------------------
-    # TODO: 6. After reading and understanding the m4e module,
+    # 6: DONE After reading and understanding the m4e module,
     #   -- Put an Entry box on the Frame.
     #   -- Put a second Button on the Frame.
     #   -- Make this new Button, when pressed, print "Hello"
@@ -41,8 +52,15 @@ def main():
     #        is the string 'ok', but print "Goodbye" otherwise.
     # ------------------------------------------------------------------
 
+    new_button = ttk.Button(my_frame, text='There is no escape!')
+    new_button['command'] = (lambda: ok(my_box))
+    new_button.grid()
+
+    my_box = ttk.Entry(my_frame)
+    my_box.grid()
+
     # ------------------------------------------------------------------
-    # TODO: 7.
+    # 7: DONE
     #    -- Put a second Entry on the Frame.
     #    -- Put a third Button on the frame.
     #    -- Make this new Button respond to a button-press as follows:
@@ -65,9 +83,41 @@ def main():
     #      n = int(s)
     ####################################################################
 
+    newer_button = ttk.Button(my_frame, text='Run!!!')
+    newer_button['command'] = (lambda: print_n_times(new_box, my_box))
+    newer_button.grid()
+
+    new_box = ttk.Entry(my_frame)
+    new_box.grid()
+
     # ------------------------------------------------------------------
-    # TODO: 8. As time permits, do other interesting GUI things!
+    # 8: DONE As time permits, do other interesting GUI things!
     # ------------------------------------------------------------------
+
+    root.mainloop()
+
+
+def hello():
+    if random.randint(0, 200) == 100:
+        print('Squirtle Returns...')
+    else:
+        print('Hello')
+
+
+def ok(entry_box):
+    if entry_box.get() == 'ok':
+        print('Hello')
+    elif entry_box.get() == 'squirtle':
+        print('Do not speak his name!')
+    else:
+        print('Goodbye')
+
+
+def print_n_times(entry_box_string, entry_box_int):
+    n = int(entry_box_int.get())
+
+    for _ in range(n):
+        print(entry_box_string.get())
 
 
 # ----------------------------------------------------------------------
