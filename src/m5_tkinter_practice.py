@@ -107,7 +107,7 @@ def hello():
 def ok(entry_box):
     if entry_box.get() == 'ok':
         print('Hello')
-    elif entry_box.get() == 'squirtle':
+    elif entry_box.get() == 'squirtle' or 'Squirtle':
         print('Do not speak his name!')
     else:
         print('Goodbye')
